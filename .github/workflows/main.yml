@@ -20,3 +20,5 @@ jobs:
       - name: Installiere Abhängigkeiten
         run: npm install
 
+      - name: Baue die Anwendung
+        run: npm run build

@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  ci:
+  lint:
     runs-on: ubuntu-22.04
     steps:
       - name: Repository auschecken
@@ -23,8 +23,38 @@ jobs:
       - name: Linter ausführen
         run: npm run lint
 
+  test:
+    runs-on: ubuntu-22.04
+    needs: lint
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Installiere Abhängigkeiten
+        run: npm install
+
       - name: Führe Tests aus
         run: npm test
 
-      - name: Baue die Anwendung
-        run: npm run build
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: test
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Installiere Abhängigkeiten
+        run: npm install
+
+      - name: Simuliere Deployment
+        run: echo "Deployment simuliert! Deine App ist bereit für die Produktion."
