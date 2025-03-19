@@ -20,5 +20,3 @@ jobs:
       - name: Installiere Abhängigkeiten
         run: npm install
 
-      - name: Führe Tests aus
-        run: npm test

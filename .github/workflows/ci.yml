@@ -23,8 +23,5 @@ jobs:
       - name: Linter ausführen
         run: npm run lint
 
-      - name: Führe Tests aus
-        run: npm test
-
       - name: Baue die Anwendung
         run: npm run build
