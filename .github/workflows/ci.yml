@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v3
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Installiere Abhängigkeiten
+        run: npm install
+
+      - name: Linter ausführen
+        run: npm run lint
+
+      - name: Führe Tests aus
+        run: npm test
+
+      - name: Baue die Anwendung
+        run: npm run build
